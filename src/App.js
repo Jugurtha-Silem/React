@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home.js'
+import Menu from './Coponents/Menu'
+import TechnoAdd from './pages/TechnoAdd';
+import TechnoList from './pages/TechnoList.js';
+import './css/app.css';
+
 
 function App() {
+  const [technos, setTechnos] = useState([]);
+  //technos
+  //[{name :'react', category : 'learn react' },{name : 'Node', category : 'learn node'},]
+  function handleAddTechno(techno){
+    console.log('handleAddTecho', techno);
+
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Menu/>
+      <Routes>
+        <Route path="/" element = {<Home/>} />
+        <Route path="/add" element = {<TechnoAdd handleAddTechno={handleAddTechno} />} />
+        <Route path="/list" element = {<TechnoList/>} />
+      </Routes>
+      
+    </>
   );
-}
+};
 
 export default App;
